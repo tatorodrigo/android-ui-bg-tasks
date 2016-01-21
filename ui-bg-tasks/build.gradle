@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ui-bg-tasks'
+
+    publishedGroupId = 'br.com.tattobr.android'
+    libraryName = 'ui-bg-tasks'
+    artifact = 'ui-bg-tasks'
+
+    libraryDescription = 'AsyncTask/Fragment base helpers for Android.'
+
+    siteUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks'
+    gitUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'tatorodrigo'
+    developerName = 'Rodrigo Tatto'
+    developerEmail = 'tato.rodrigo@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName "0.1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+apply from: 'https://raw.githubusercontent.com/tatorodrigo/jcenter/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/tatorodrigo/jcenter/master/bintray.gradle'
