@@ -3,6 +3,8 @@ package br.com.tattobr.android.asynctasks;
 import android.os.AsyncTask;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
     public interface AsyncTaskListener<Result> {
@@ -16,6 +18,8 @@ public abstract class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<
 
         void onAsyncTaskStart();
     }
+
+    private List<Throwable> mExecuteExceptions;
 
     public BaseAsyncTask(AsyncTaskListener<Result> listener) {
         setAsyncTaskListener(listener);
@@ -74,18 +78,29 @@ public abstract class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<
                 executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, params);
                 executed = true;
             }
-        } catch (Exception e) {
-
+        } catch (Throwable t) {
+            appendExecuteExceptions(t);
         }
 
         try {
             if (!executed) {
                 execute(params);
             }
-        } catch (Exception e) {
-
+        } catch (Throwable t) {
+            appendExecuteExceptions(t);
         }
 
         return executed;
+    }
+
+    private void appendExecuteExceptions(Throwable t) {
+        if (mExecuteExceptions == null) {
+            mExecuteExceptions = new ArrayList<>();
+        }
+        mExecuteExceptions.add(t);
+    }
+
+    public List<Throwable> getExecuteExceptions() {
+        return mExecuteExceptions;
     }
 }
