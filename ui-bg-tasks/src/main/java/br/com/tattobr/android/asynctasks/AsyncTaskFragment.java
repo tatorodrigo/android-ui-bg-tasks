@@ -63,7 +63,7 @@ public abstract class AsyncTaskFragment<Result> extends Fragment {
         mPaused = false;
 
         dispatchAsyncTaskStart();
-        dispatchAsyncTaskFail();
+        dispatchAsyncTaskFail(mAsyncTaskResult);
         dispatchAsyncTaskComplete(mAsyncTaskResult);
         dispatchAsyncTaskCancelled();
         dispatchAsyncTaskFinish();
@@ -97,9 +97,10 @@ public abstract class AsyncTaskFragment<Result> extends Fragment {
                 }
 
                 @Override
-                public void onAsyncTaskFail() {
+                public void onAsyncTaskFail(Result result) {
                     mFailDispatch = true;
-                    dispatchAsyncTaskFail();
+                    mAsyncTaskResult = result;
+                    dispatchAsyncTaskFail(result);
                 }
 
                 @Override
@@ -139,10 +140,10 @@ public abstract class AsyncTaskFragment<Result> extends Fragment {
         }
     }
 
-    private void dispatchAsyncTaskFail() {
+    private void dispatchAsyncTaskFail(Result result) {
         if (mAsyncTaskFragmentListener != null && mFailDispatch && !mFailDispatched && !mPaused) {
             mFailDispatched = true;
-            mAsyncTaskFragmentListener.getAsyncTaskListener(this).onAsyncTaskFail();
+            mAsyncTaskFragmentListener.getAsyncTaskListener(this).onAsyncTaskFail(result);
         }
     }
 

@@ -12,7 +12,7 @@ public abstract class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<
 
         void onAsyncTaskComplete(Result result);
 
-        void onAsyncTaskFail();
+        void onAsyncTaskFail(Result result);
 
         void onAsyncTaskFinish();
 
@@ -52,7 +52,7 @@ public abstract class BaseAsyncTask<Params, Progress, Result> extends AsyncTask<
             if (isSuccess(result)) {
                 asyncTaskListener.onAsyncTaskComplete(result);
             } else {
-                asyncTaskListener.onAsyncTaskFail();
+                asyncTaskListener.onAsyncTaskFail(result);
             }
             asyncTaskListener.onAsyncTaskFinish();
         }
