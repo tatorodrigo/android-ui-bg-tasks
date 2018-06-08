@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks'
     gitUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks.git'
 
-    libraryVersion = '0.1.20'
+    libraryVersion = '0.1.21'
 
     developerId = 'tatorodrigo'
     developerName = 'Rodrigo Tatto'
@@ -25,14 +25,13 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 15
+        targetSdkVersion 27
         versionCode 1
-        versionName "0.1.20"
+        versionName "0.1.21"
     }
     buildTypes {
         release {
@@ -43,9 +42,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
 }
 
 apply from: 'https://raw.githubusercontent.com/tatorodrigo/jcenter/master/install.gradle'
