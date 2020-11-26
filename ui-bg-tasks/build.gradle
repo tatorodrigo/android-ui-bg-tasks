@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks'
     gitUrl = 'https://github.com/tatorodrigo/android-ui-bg-tasks.git'
 
-    libraryVersion = '0.1.21'
+    libraryVersion = '0.2.0'
 
     developerId = 'tatorodrigo'
     developerName = 'Rodrigo Tatto'
@@ -31,7 +31,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
-        versionName "0.1.21"
+        versionName "0.2.0"
     }
     buildTypes {
         release {
